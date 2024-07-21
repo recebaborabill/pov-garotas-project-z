@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Navegador</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background: linear-gradient(to bottom, #000000, #434343); /* Gradiente preto */
+            color: #ffffff; /* Cor do texto */
+            font-family: 'Roboto Slab', serif; /* Fonte fancy */
+        }
+        .header {
+            position: absolute;
+            top: 20px;
+            font-size: 24px;
+            font-weight: 700; /* Peso da fonte mais pesado para mais destaque */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .rect {
+            width: 100px;
+            height: 100px;
+            background-color: black;
+        }
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            font-family: 'Roboto Slab', serif; /* Fonte fancy */
+            background-color: #333; /* Cor de fundo do botão */
+            color: #fff; /* Cor do texto do botão */
+            border: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #555; /* Cor de fundo do botão ao passar o mouse */
+        }
+    </style>
+</head>
+<body>
+    <div class="header">pov: você tenta encontrar alguma garota legal no project z</div>
+    <div class="container">
+        <div id="rect1" class="rect"></div>
+        <div id="rect2" class="rect"></div>
+        <div id="rect3" class="rect"></div>
+    </div>
+    <button onclick="changeImages()">Próxima Garota</button>
+
+    <script>
+        const images = [
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnlNvracG2D90nLDO-6M95_QEUOuZ05f0cAn6HgjZSR0eFfzEXGCpq_nLV&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSaVkqqN5gYW9SD_E0AR1Uyq7IonQf5AsTGvCfPvMhIi0AoHk8a464OUw&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5ESRQkMFt6DW26FLuycrj8Rx3eJY7uNjBMtdld-MA9qNlnSH0SW1a4j8-&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSr8XUaw8aaSnL4S1k46WlOWnUL9iaIoeMun1Nuc9lCZcbtONxIWgbZ2LA&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ4XkQ7Wn36oJuFkbQ4SFRnBlkRzVKcN1l1yXZ_PMbuVbryUOSMCCRL6oJa&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdJIeRA0rFGoAN3zCYpAdxrjk7Jd6J3BARMHXNMdp9OD_9zXhPaJC_fo5F&s=10",
+            "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLNpugrZj5QBFQ-3EzIEavNWOktmAijJVm5JeFDkzdCGVaJD8Raj5qArdy&s=10"
+        ];
+
+        function changeImages() {
+            const rects = document.querySelectorAll('.rect');
+            let usedIndices = [];
+
+            rects.forEach(rect => {
+                let index;
+                do {
+                    index = Math.floor(Math.random() * images.length);
+                } while (usedIndices.includes(index));
+                usedIndices.push(index);
+                rect.style.backgroundImage = `url(${images[index]})`;
+                rect.style.backgroundColor = 'transparent';
+                rect.style.backgroundSize = 'cover';
+                rect.style.backgroundPosition = 'center';
+            });
+        }
+    </script>
+</body>
+</html>
